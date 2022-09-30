@@ -1,0 +1,65 @@
+body {
+    background-color: #17242C;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-items: stretch;
+}
+ /*NAVBAR*/
+.navbar-menu {
+    background-color: #27333A;
+}
+.navbar-menu .navbar-nav {
+    display: flex;
+    flex-direction: row;
+}
+.navbar-menu .nav-item {
+    display: flex;
+    align-items: center;
+}
+.navbar-menu #navbarDropdownMenuLink {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: .3em;
+}
+.navbar-menu #navbarDropdownMenuLink i{
+    border: solid 1px #fff;
+    font-size: 40px;
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+/* NAVBAR END */
+main {
+    flex-grow: 1;
+}
+
+.song-list i {
+    margin-top: 7px;
+}
+
+.song-list a {
+    color: #fff;
+}
+
+.song-details {
+    background-color: #222F36;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.genre-list li {
+    margin-right: 5px;
+}
+
+.mixed-vinyl-container {
+    background: rgb(23,36,44);
+    background: linear-gradient(180deg, rgba(23,36,44,1) 1%, rgba(34,47,54,1) 97%);
+    border-radius: 5px;
+}
