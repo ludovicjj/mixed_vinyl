@@ -10,7 +10,10 @@ import { Controller } from '@hotwired/stimulus';
  * Delete this file or adapt it for your use!
  */
 export default class extends Controller {
+    count = 0;
+
     connect() {
-        this.element.textContent = 'Hello Stimulus! Edit me in assets/controllers/hello_controller.js';
+        this.count++;
+        this.element.textContent = 'Lucky number' + this.count;
     }
 }

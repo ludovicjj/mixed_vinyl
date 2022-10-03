@@ -1,3 +1,68 @@
+@import "~bootstrap";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~@fontsource/roboto-condensed';
+
 body {
-    background-color: lightgray;
+    background-color: #17242C;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-items: stretch;
+}
+main {
+    flex-grow: 1;
+}
+
+.navbar {
+    background-color: #27333A;
+}
+
+.song-list i {
+    margin-top: 7px;
+}
+
+.song-list a {
+    color: #fff;
+}
+
+.song-details {
+    background-color: #222F36;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.genre-list li {
+    margin-right: 5px;
+}
+
+.mixed-vinyl-container {
+    background: rgb(23,36,44);
+    background: linear-gradient(180deg, rgba(23,36,44,1) 1%, rgba(34,47,54,1) 97%);
+    border-radius: 5px;
+}
+/* style for width >= 992px */
+@media (min-width: 992px) {
+    .navbar .navbar-nav > .nav-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #navbarDropdownMenuLink {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: .3em;
+    }
+    #navbarDropdownMenuLink i {
+        border: solid 1px #fff;
+        font-size: 40px;
+        width: 58px;
+        height: 58px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
 }
