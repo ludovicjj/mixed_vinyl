@@ -34,7 +34,6 @@ class VinylController extends AbstractController
     public function browse(HttpClientInterface $httpClient, CacheInterface $cache, string $slug = null): Response
     {
         $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
-
         $mixes = $cache->get('mixes_data', function (CacheItemInterface $cacheItem) use ($httpClient) {
             $cacheItem->expiresAfter(3600);
             $response = $httpClient->request('GET', 'https://raw.githubusercontent.com/SymfonyCasts/vinyl-mixes/main/mixes.json');
