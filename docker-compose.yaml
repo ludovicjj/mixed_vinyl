@@ -3,7 +3,7 @@ services:
     database:
         image: postgres:${POSTGRES_VERSION:-14}-alpine
         environment:
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
             POSTGRES_USER: ${POSTGRES_USER:-app}
             POSTGRES_DB: ${POSTGRES_DB:-mixedb}
         volumes:
