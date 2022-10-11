@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\VinylMix;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,21 @@ class VinylMixRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllGreaterThanVote(int $vote)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT v
+            FROM App\Entity\VinylMix v
+            WHERE v.votes > :vote
+            ORDER BY v.votes ASC
+            '
+        )->setParameter('vote', $vote);
+
+        // Return an array of VinylMix Object
+        return $query->getResult(1);
     }
 
 //    /**
