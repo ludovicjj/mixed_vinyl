@@ -26,6 +26,8 @@
                             <img src="https://via.placeholder.com/300" data-src="https://via.placeholder.com/300" alt="Square placeholder img">
                             <p class="mt-2"><strong>{{ mixe.title }}</strong></p>
                             <span>{{ mixe.trackCount}} Tracks</span> | <span>{{ mixe.genre }}</span> | <span>{{ mixe.createdAt|ago }}</span>
+                            <br>
+                            <span class="badge text-bg-primary">{{ mixe.votes }}</span>
                         </div>
                     </div>
                 {% endfor %}
