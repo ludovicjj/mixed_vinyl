@@ -23,7 +23,7 @@
                 {% for mixe in mixes %}
                     <div class="col col-md-4">
                         <div class="mixed-vinyl-container p-3 text-center">
-                            <img src="https://via.placeholder.com/300" data-src="https://via.placeholder.com/300" alt="Square placeholder img">
+                            <img src="{{ mixe.imageUrl(300) }}" alt="Mix Album Cover">
                             <p class="mt-2"><strong>{{ mixe.title }}</strong></p>
                             <span>{{ mixe.trackCount}} Tracks</span> | <span>{{ mixe.genre }}</span> | <span>{{ mixe.createdAt|ago }}</span>
                             <br>

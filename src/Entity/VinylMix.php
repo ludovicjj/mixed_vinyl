@@ -120,4 +120,13 @@ class VinylMix
 
         return $this;
     }
+
+    public function getImageUrl(int $width)
+    {
+        return sprintf(
+          'https://picsum.photos/id/%d/%d',
+            ($this->getId() + 50) % 1000,
+            $width
+        );
+    }
 }
