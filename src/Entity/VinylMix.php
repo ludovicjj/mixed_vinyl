@@ -102,6 +102,13 @@ class VinylMix
         return $this;
     }
 
+    public function getVotesString(): string
+    {
+        $prefix = ($this->votes === 0) ? '' : (($this->votes > 0) ? '+' : '-');
+
+        return sprintf('%s %d', $prefix, abs($this->votes));
+    }
+
     public function getVotes(): int
     {
         return $this->votes;
