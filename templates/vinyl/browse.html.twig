@@ -19,16 +19,18 @@
 
         <div>
             <h2 class="mt-5">Mixes</h2>
-            <div class="row">
-                {% for mixe in mixes %}
-                    <div class="col col-md-4">
-                        <div class="mixed-vinyl-container p-3 text-center">
-                            <img src="{{ mixe.imageUrl(300) }}" alt="Mix Album Cover">
-                            <p class="mt-2"><strong>{{ mixe.title }}</strong></p>
-                            <span>{{ mixe.trackCount}} Tracks</span> | <span>{{ mixe.genre }}</span> | <span>{{ mixe.createdAt|ago }}</span>
+            <div class="grid-mixes-container">
+                {% for mix in mixes %}
+                    <div>
+                        <a href="{{ path('app_mix_show', {id: mix.id}) }}"
+                           class="mixed-vinyl-container text-center p-3 d-block"
+                        >
+                            <img src="{{ mix.imageUrl(300) }}" alt="Mix Album Cover">
+                            <p class="mt-2"><strong>{{ mix.title }}</strong></p>
+                            <span>{{ mix.trackCount}} Tracks</span> | <span>{{ mix.genre }}</span> | <span>{{ mix.createdAt|ago }}</span>
                             <br>
-                            <span class="badge text-bg-primary">{{ mixe.votesString }}</span>
-                        </div>
+                            <span class="badge text-bg-primary">{{ mix.votesString }}</span>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
