@@ -2,27 +2,20 @@
 
 namespace App\Controller;
 
-use App\Entity\VinylMix;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\VinylMixRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MixController extends AbstractController
 {
-    #[Route('/mix/new')]
-    public function new(EntityManagerInterface $em): Response
+    #[Route('/mix/{id}', name: 'app_mix_show')]
+    public function show($id, VinylMixRepository $mixRepository): Response
     {
-        $genre = ['pop', 'rock'];
-        $mix = new VinylMix();
-        $mix->setTitle('Do you Remember... Phil Collins?!')
-            ->setDescription('A pure mix of drummers turned singers!')
-            ->setGenre($genre[array_rand($genre)])
-            ->setTrackCount(rand(5, 20))
-            ->setVotes(rand(-50, 50));
-        $em->persist($mix);
-        $em->flush();
+        $mix = $mixRepository->find($id);
 
-        return new Response(sprintf('Mix %d is %d tracks', $mix->getId(), $mix->getTrackCount()));
+        return $this->render('mix/show.html.twig', [
+           'mix' => $mix
+        ]);
     }
 }
