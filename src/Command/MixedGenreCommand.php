@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Service\MixRepository;
+use App\Repository\VinylMixRepository;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,11 +17,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class MixedGenreCommand extends Command
 {
-    private array $mixes;
-
     public function __construct(
-        private MixRepository $mixRepository)
-    {
+        private VinylMixRepository $mixRepository
+    ){
         parent::__construct();
     }
 
@@ -30,11 +28,6 @@ class MixedGenreCommand extends Command
         $this
             ->addArgument('genre', InputArgument::REQUIRED, 'Mix genre')
         ;
-    }
-
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $this->mixes = $this->mixRepository->findAll();
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)
@@ -46,18 +39,16 @@ class MixedGenreCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $genre = $input->getArgument('genre');
+        $mixes = $this->mixRepository->findBy(['genre' => $genre]);
+        $count = count($mixes);
 
-        $mixesFilterByGenre = array_filter($this->mixes, function($mix) use ($genre) {
-            return $mix['genre'] === $genre;
-        });
-        $mixesFilterByGenreCount = count($mixesFilterByGenre);
-        $io->success("Selected mix for given genre: \"{$genre}\", total result {$mixesFilterByGenreCount}");
+        $io->success("Selected mix for given genre: \"{$genre}\", total result {$count}");
 
         $io->table(
             ['Title', 'TrackCount'],
             array_map(function($mix) {
-                return [$mix['title'], $mix['trackCount']];
-            }, $mixesFilterByGenre)
+                return [$mix->getTitle(), $mix->getTrackCount()];
+            }, $mixes)
         );
 
         return Command::SUCCESS;
@@ -66,15 +57,13 @@ class MixedGenreCommand extends Command
     private function enterGenre(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
+        $mixes = $this->mixRepository->findAll();
 
-        $genres = array_unique(array_map(function($mix) {
-            return $mix['genre'];
-        }, $this->mixes));
+        $genres = array_unique(array_map(fn($mix) => $mix->getGenre(), $mixes));
 
         $genreQuestion = new ChoiceQuestion(
             "Select Mixes Genre",
-            $genres,
-            'Rock'
+            $genres
         );
         $genre = $helper->ask($input, $output, $genreQuestion);
         $input->setArgument('genre', $genre);
