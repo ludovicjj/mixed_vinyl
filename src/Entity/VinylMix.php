@@ -121,7 +121,7 @@ class VinylMix
         return $this;
     }
 
-    public function getImageUrl(int $width)
+    public function getImageUrl(int $width): string
     {
         return sprintf(
           'https://picsum.photos/id/%d/%d',
