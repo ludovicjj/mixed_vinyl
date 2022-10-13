@@ -55,6 +55,12 @@
             </div>
         </nav>
         <main>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success alert-dismissible container" role="alert">
+                    <div>{{ message }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
             {% block body %}{% endblock %}
         </main>
         <!-- Footer -->
