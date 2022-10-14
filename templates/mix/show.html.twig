@@ -11,6 +11,10 @@
             </div>
             <div class="col-12 col-md-8 ps-5">
                 <h2 class="mb-4">{{ mix.trackCount }} songs <span class="badge bg-secondary">{{ mix.genre }}</span></h2>
+
+                <h4>Description :</h4>
+                <p>{{ mix.description }}</p>
+
                 <span>{{ mix.votesString }} votes</span>
 
                 <form action="{{ path('app_mix_vote', {id: mix.id}) }}" method="POST" class="mt-4">
