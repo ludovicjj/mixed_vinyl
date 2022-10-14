@@ -22,7 +22,7 @@
             <div class="grid-mixes-container">
                 {% for mix in mixes %}
                     <div>
-                        <a href="{{ path('app_mix_show', {id: mix.id}) }}"
+                        <a href="{{ path('app_mix_show', {slug: mix.slug}) }}"
                            class="mixed-vinyl-container text-center p-3 d-block"
                         >
                             <img src="{{ mix.imageUrl(300) }}" alt="Mix Album Cover">
