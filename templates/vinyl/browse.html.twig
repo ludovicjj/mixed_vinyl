@@ -35,8 +35,8 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="pagination-container">
-                {{ pagerfanta(pager, {next_message: '<i class="fa-solid fa-forward"></i>'}) }}
+            <div class="pagination-container d-flex justify-content-center mt-4">
+                {{ pagerfanta(pager, {template: 'pagerfanta/twitter_bootstrap5_custom.html.twig'}) }}
             </div>
         </div>
     </div>
