@@ -39,6 +39,7 @@ main {
 .grid-mixes-container {
     display: grid;
     grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
     gap: 1rem;
 }
 .mixed-vinyl-container {
@@ -47,6 +48,7 @@ main {
     border-radius: 5px;
     text-decoration: none;
     color: inherit;
+    height: 100%;
 }
 .mixed-vinyl-container:hover {
     color: inherit;
