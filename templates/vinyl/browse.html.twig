@@ -13,34 +13,32 @@
                 <a class="btn btn-primary btn-sm" href="{{ path('app_browse', {'slug': 'rock'}) }}">Rock</a>
             </li>
             <li class="d-inline">
-                <a class="btn btn-primary btn-sm" href="{{ path('app_browse', {'slug': 'heavy-metal'}) }}">Heavy Metal</a>
+                <a class="btn btn-primary btn-sm" href="{{ path('app_browse') }}">All-Genres</a>
             </li>
         </ul>
 
         <div>
             <h2 class="mt-5">Mixes</h2>
-
-            <div class="grid-mixes-container">
-                {% for mix in pager %}
-                    <div>
-                        <a href="{{ path('app_mix_show', {slug: mix.slug}) }}"
-                           class="mixed-vinyl-container text-center p-3 d-flex flex-column align-items-center"
-                        >
-                            <img class="rounded-top" src="{{ mix.imageUrl(300) }}" alt="Mix Album Cover">
-                            <p class="mt-2"><strong>{{ mix.title }}</strong></p>
-                            <span class="flex-grow-1 d-flex align-items-end">{{ mix.trackCount}} Tracks | {{ mix.genre }} | {{ mix.createdAt|ago }}</span>
-                            <br>
-                            <span class="badge text-bg-primary">{{ mix.votesString }}</span>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-                {{ pagerfanta(pager, {
-                    template: 'pagerfanta/twitter_bootstrap5_custom.html.twig',
-                    prev_message: '<i class="fa-solid fa-caret-left"></i>',
-                    next_message: '<i class="fa-solid fa-caret-right"></i>',
-                    proximity: 2
-                }) }}
+            <turbo-frame id="mix-browse-list-{{ pager.currentPage }}">
+                <div class="grid-mixes-container mb-3">
+                    {% for mix in pager %}
+                        <div>
+                            <a href="{{ path('app_mix_show', {slug: mix.slug}) }}"
+                               class="mixed-vinyl-container text-center p-3 d-flex flex-column align-items-center"
+                            >
+                                <img class="rounded-top" src="{{ mix.imageUrl(300) }}" alt="Mix Album Cover">
+                                <p class="mt-2"><strong>{{ mix.title }}</strong></p>
+                                <span class="flex-grow-1 d-flex align-items-end">{{ mix.trackCount}} Tracks | {{ mix.genre }} | {{ mix.createdAt|ago }}</span>
+                                <br>
+                                <span class="badge text-bg-primary">{{ mix.votesString }}</span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if pager.hasNextPage %}
+                    <turbo-frame id="mix-browse-list-{{ pager.nextPage }}" src="{{ pagerfanta_page_url(pager, pager.nextPage) }}" loading="lazy"></turbo-frame>
+                {% endif %}
+            </turbo-frame>
         </div>
     </div>
 {% endblock %}
