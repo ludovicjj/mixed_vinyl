@@ -24,20 +24,23 @@
                 {% for mix in pager %}
                     <div>
                         <a href="{{ path('app_mix_show', {slug: mix.slug}) }}"
-                           class="mixed-vinyl-container text-center p-3 d-block"
+                           class="mixed-vinyl-container text-center p-3 d-flex flex-column align-items-center"
                         >
-                            <img src="{{ mix.imageUrl(300) }}" alt="Mix Album Cover">
+                            <img class="rounded-top" src="{{ mix.imageUrl(300) }}" alt="Mix Album Cover">
                             <p class="mt-2"><strong>{{ mix.title }}</strong></p>
-                            <span>{{ mix.trackCount}} Tracks</span> | <span>{{ mix.genre }}</span> | <span>{{ mix.createdAt|ago }}</span>
+                            <span class="flex-grow-1 d-flex align-items-end">{{ mix.trackCount}} Tracks | {{ mix.genre }} | {{ mix.createdAt|ago }}</span>
                             <br>
                             <span class="badge text-bg-primary">{{ mix.votesString }}</span>
                         </a>
                     </div>
                 {% endfor %}
             </div>
-            <div class="pagination-container d-flex justify-content-center mt-4">
-                {{ pagerfanta(pager, {template: 'pagerfanta/twitter_bootstrap5_custom.html.twig'}) }}
-            </div>
+                {{ pagerfanta(pager, {
+                    template: 'pagerfanta/twitter_bootstrap5_custom.html.twig',
+                    prev_message: '<i class="fa-solid fa-caret-left"></i>',
+                    next_message: '<i class="fa-solid fa-caret-right"></i>',
+                    proximity: 2
+                }) }}
         </div>
     </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+@import "variables";
 @import "~bootstrap";
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import '~@fontsource/roboto-condensed';
@@ -56,6 +57,25 @@ main {
 .mixed-vinyl-container > img {
     width: 100%;
 }
+.mixed-vinyl-container .badge {
+    width: fit-content;
+}
+
+.pagination {
+    gap: .4rem;
+    align-items: center;
+}
+.pagination li .page-link{
+    border-radius: 0.2rem;
+}
+.pagination li:first-child, .pagination li:last-child {
+    .page-link{
+        padding: .18rem .7rem
+    }
+}
+
+
+
 /* style for width >= 768px */
 @media (min-width: 768px) {
     .grid-mixes-container {

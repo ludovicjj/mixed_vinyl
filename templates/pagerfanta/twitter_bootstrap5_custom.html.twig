@@ -2,14 +2,26 @@
 
 {# Overriding prev and next block from @Pagerfanta/default.html.twig #}
 
-{%- block previous_page_link -%}
-{%- endblock previous_page_link -%}
+{%- block pager_widget -%}
+    <nav aria-label="navigation-mixes" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {{- block('pager') -}}
+        </ul>
+    </nav>
+{%- endblock pager_widget -%}
 
-{%- block previous_page_link_disabled -%}
-{%- endblock previous_page_link_disabled -%}
+{%- block previous_page_message -%}
+    {%- if options['prev_message'] is defined -%}
+        {{- options['prev_message']|raw -}}
+    {%- else -%}
+        Previous
+    {%- endif -%}
+{%- endblock previous_page_message -%}
 
-{%- block next_page_link -%}
-{%- endblock next_page_link -%}
-
-{%- block next_page_link_disabled -%}
-{%- endblock next_page_link_disabled -%}
+{%- block next_page_message -%}
+    {%- if options['next_message'] is defined -%}
+        {{- options['next_message']|raw -}}
+    {%- else -%}
+        Next
+    {%- endif -%}
+{%- endblock next_page_message -%}
